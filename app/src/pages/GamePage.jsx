@@ -1,8 +1,10 @@
+import Layout from '../components/Layout';
+
 const GamePage = () => {
   return (
-    <div>
+    <Layout>
       <p>GamePage</p>
-    </div>
+    </Layout>
   );
 };
 
