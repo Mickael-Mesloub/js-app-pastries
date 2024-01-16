@@ -2,6 +2,7 @@
 
 .main-login {
   justify-content: center;
+  height: calc(100vh - 83px);
 }
 
 .form-login {
@@ -10,7 +11,7 @@
   align-items: center;
   justify-content: center;
   background-color: $gold;
-  width: 33%;
+  width: 20%;
   padding: 2em;
   gap: 8px;
   border-radius: 1em;
@@ -19,6 +20,7 @@
     padding: 8px;
     border-radius: 24px;
     font-size: 1.25em;
+    text-align: center;
   }
 
   > input[type='email'],
