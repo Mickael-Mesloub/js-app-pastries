@@ -13,6 +13,7 @@ export const userSlice = createSlice({
   initialState,
   reducers: {
     // TODO: insert reducer functions here
+    // use import.meta.env.VITE_API_URL to access API url
     login: (state, action) => {
       state.user = { ...action.payload };
     },
