@@ -1,11 +1,14 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 
-const initialState = {
-  user: {
-    isConnected: false,
-  },
-  isLoading: false,
-};
+const storedState = localStorage.getItem('reduxState');
+const initialState = storedState
+  ? JSON.parse(storedState)
+  : {
+      user: {
+        isConnected: false,
+      },
+      isLoading: false,
+    };
 
 export const login = createAsyncThunk('login', async (userData) => {
   console.log(userData);
@@ -52,6 +55,7 @@ export const authSliceAsync = createSlice({
       console.log(action.payload.message);
       state.user.isConnected = true;
       state.isLoading = false;
+      localStorage.setItem('reduxState', JSON.stringify(state));
     });
 
     // logout
@@ -67,6 +71,7 @@ export const authSliceAsync = createSlice({
       console.log(action.payload.message);
       state.isLoading = false;
       state.user.isConnected = false;
+      localStorage.setItem('reduxState', JSON.stringify(state));
     });
   },
 });
