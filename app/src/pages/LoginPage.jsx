@@ -1,21 +1,21 @@
 import { useDispatch, useSelector } from 'react-redux';
 import Layout from '../components/Layout';
-import { useEffect } from 'react';
-import { login, logout } from '../store/user';
+import { useEffect, useState } from 'react';
+import { login, logout } from '../store/auth';
 
 const LoginPage = () => {
-  const { user } = useSelector((state) => state.user);
+  const [user, setUser] = useState({
+    email: '',
+    password: '',
+  });
+
+  const state = useSelector((state) => state.user);
   const dispatch = useDispatch();
+
   const handleSubmit = (e) => {
     e.preventDefault();
     console.log('>>>>Login');
-    dispatch(
-      login({
-        email: 'super-email@gmail.com',
-        password: '123',
-        isConnected: true,
-      })
-    );
+    dispatch(login(user));
   };
 
   const handleLogout = () => {
@@ -24,14 +24,22 @@ const LoginPage = () => {
   };
 
   useEffect(() => {
-    console.log(user);
-  }, [user]);
+    console.log(state);
+  }, [state]);
 
   return (
     <Layout>
       <form onSubmit={handleSubmit}>
-        <input type="email" placeholder="email" />
-        <input type="password" placeholder="password" />
+        <input
+          type="email"
+          placeholder="email"
+          onChange={(e) => setUser({ ...user, email: e.target.value })}
+        />
+        <input
+          type="password"
+          placeholder="password"
+          onChange={(e) => setUser({ ...user, password: e.target.value })}
+        />
         <input type="submit" value="Login" />
       </form>
       <button onClick={handleLogout}>Logout</button>
