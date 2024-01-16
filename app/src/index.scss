@@ -3,6 +3,11 @@ $font-stack: Helvetica, sans-serif;
 // colors
 $green: rgba(71, 159, 119, 0.371);
 $gold: rgba(230, 186, 26, 0.703);
+$red: rgb(204, 31, 31);
+$gray1: #e2e2e2;
+$gray2: #cccccc;
+$gray3: #b7b7b7;
+$gray4: #9d9d9d;
 $white: #fff;
 $body-background: #f7f7f2;
 
@@ -10,7 +15,6 @@ $body-background: #f7f7f2;
   font-weight: 600;
   border: 0px;
   cursor: pointer;
-  margin-top: 1em;
   padding: 0.5em 2em;
   background-color: rgb(42, 42, 42);
   color: $gold;

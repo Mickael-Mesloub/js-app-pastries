@@ -28,5 +28,6 @@
 
   > input[type='submit'] {
     @include button;
+    margin-top: 1em;
   }
 }
