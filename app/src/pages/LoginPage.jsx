@@ -1,7 +1,8 @@
 import { useDispatch, useSelector } from 'react-redux';
 import Layout from '../components/Layout';
 import { useEffect, useState } from 'react';
-import { login, logout } from '../store/auth';
+import { login } from '../store/auth';
+import { useNavigate } from 'react-router-dom';
 import './styles/LoginPage-styles.scss';
 
 const LoginPage = () => {
@@ -12,6 +13,7 @@ const LoginPage = () => {
 
   const state = useSelector((state) => state.user);
   const dispatch = useDispatch();
+  const navigate = useNavigate();
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -19,13 +21,14 @@ const LoginPage = () => {
     dispatch(login(user));
   };
 
-  const handleLogout = () => {
-    console.log('>>>>Logout');
-    dispatch(logout());
-  };
-
   useEffect(() => {
     console.log(state);
+  }, [state]);
+
+  useEffect(() => {
+    if (state.user.isConnected) {
+      navigate('/');
+    }
   }, [state]);
 
   return (
@@ -45,7 +48,6 @@ const LoginPage = () => {
           />
           <input type="submit" value="Connexion" />
         </form>
-        <button onClick={handleLogout}>Logout</button>
       </>
     </Layout>
   );
