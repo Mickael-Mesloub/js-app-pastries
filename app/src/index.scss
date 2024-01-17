@@ -2,7 +2,8 @@ $font-stack: Helvetica, sans-serif;
 
 // colors
 $green: rgba(71, 159, 119, 0.371);
-$gold: rgba(230, 186, 26, 0.703);
+$gold1: rgba(230, 186, 26, 0.703);
+$gold2: rgb(255, 200, 0);
 $red: rgb(204, 31, 31);
 $gray1: #e2e2e2;
 $gray2: #cccccc;
@@ -18,7 +19,7 @@ $black: rgb(42, 42, 42);
   cursor: pointer;
   padding: 0.5em 2em;
   background-color: $black;
-  color: $gold;
+  color: $gold2;
   text-align: center;
   border-radius: 1em;
 
