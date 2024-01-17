@@ -1,7 +1,7 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 import { toastError, toastSuccess } from '../components/Toast';
 
-const storedState = localStorage.getItem('reduxState');
+const storedState = localStorage.getItem('authState');
 const initialState = storedState
   ? JSON.parse(storedState)
   : {
@@ -57,7 +57,7 @@ export const authSliceAsync = createSlice({
       state.user.isConnected = true;
       state.isLoading = false;
       toastSuccess('Vous êtes connecté ! ✅');
-      localStorage.setItem('reduxState', JSON.stringify(state));
+      localStorage.setItem('authState', JSON.stringify(state));
     });
 
     // logout
@@ -74,7 +74,7 @@ export const authSliceAsync = createSlice({
       console.log(action.payload.message);
       state.isLoading = false;
       state.user.isConnected = false;
-      localStorage.setItem('reduxState', JSON.stringify(state));
+      localStorage.setItem('authState', JSON.stringify(state));
       toastSuccess('Vous êtes déconnecté ! ✅');
     });
   },
