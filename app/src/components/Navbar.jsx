@@ -11,6 +11,7 @@ const Navbar = () => {
   const handleLogout = () => {
     console.log('>>>>Logout');
     dispatch(logout());
+    window.location.reload();
   };
 
   return (
@@ -21,11 +22,10 @@ const Navbar = () => {
       <Link to="/contact" className="nav-link">
         Contact
       </Link>
-      {!state.user.isConnected ? (
-        <Link to="/login" className="nav-link">
-          Connexion
-        </Link>
-      ) : (
+      <Link to="/login" className="nav-link">
+        {state.user.isConnected ? 'Admin' : 'Login'}
+      </Link>
+      {state.user.isConnected && (
         <CustomButton text="Déconnexion" type="logout" onClick={handleLogout} />
       )}
     </nav>
