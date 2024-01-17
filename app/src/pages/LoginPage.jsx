@@ -4,6 +4,7 @@ import { useEffect, useState } from 'react';
 import { login } from '../store/auth';
 import { useNavigate } from 'react-router-dom';
 import './styles/LoginPage-styles.scss';
+import AddPastryForm from '../components/CrudForms/AddPastryForm';
 
 const LoginPage = () => {
   const [user, setUser] = useState({
@@ -25,31 +26,33 @@ const LoginPage = () => {
     console.log(state);
   }, [state]);
 
-  useEffect(() => {
-    if (state.user.isConnected) {
-      navigate('/');
-    }
-  }, [state]);
-
   return (
-    <Layout className="login">
-      <>
-        <form onSubmit={handleSubmit} className="form-login">
-          <h2>Connectez-vous!</h2>
-          <input
-            type="email"
-            placeholder="email"
-            onChange={(e) => setUser({ ...user, email: e.target.value })}
-          />
-          <input
-            type="password"
-            placeholder="password"
-            onChange={(e) => setUser({ ...user, password: e.target.value })}
-          />
-          <input type="submit" value="Connexion" />
-        </form>
-      </>
-    </Layout>
+    <>
+      {!state.user.isConnected ? (
+        <Layout className="login">
+          <>
+            <form onSubmit={handleSubmit} className="form-login">
+              <h2>Connectez-vous!</h2>
+              <input
+                type="email"
+                placeholder="email"
+                onChange={(e) => setUser({ ...user, email: e.target.value })}
+              />
+              <input
+                type="password"
+                placeholder="password"
+                onChange={(e) => setUser({ ...user, password: e.target.value })}
+              />
+              <input type="submit" value="Connexion" />
+            </form>
+          </>
+        </Layout>
+      ) : (
+        <>
+          <AddPastryForm />
+        </>
+      )}
+    </>
   );
 };
 
