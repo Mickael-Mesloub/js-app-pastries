@@ -8,6 +8,7 @@ import App from './App.jsx';
 import ContactPage from './pages/ContactPage.jsx';
 import LoginPage from './pages/LoginPage.jsx';
 import GamePage from './pages/GamePage.jsx';
+import { Toast } from './components/Toast.jsx';
 
 const router = createBrowserRouter([
   {
@@ -32,6 +33,7 @@ ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
     <Provider store={store}>
       <RouterProvider router={router} />
+      <Toast />
     </Provider>
   </React.StrictMode>
 );
