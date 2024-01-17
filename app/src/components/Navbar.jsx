@@ -26,7 +26,7 @@ const Navbar = () => {
         {state.user.isConnected ? 'Admin' : 'Login'}
       </Link>
       {state.user.isConnected && (
-        <CustomButton text="Déconnexion" type="logout" onClick={handleLogout} />
+        <CustomButton text="Logout" type="logout" onClick={handleLogout} />
       )}
     </nav>
   );

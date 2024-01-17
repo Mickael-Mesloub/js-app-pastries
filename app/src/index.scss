@@ -54,6 +54,9 @@ $black: rgb(42, 42, 42);
 
 body {
   font: 100% $font-stack;
-  background-color: $body-background;
+  //   background: url('/src/assets/images/background.jpg') no-repeat center center fixed;
+  //   background-size: cover;
+  //   min-height: 100dvh;
   margin: 0;
+  width: 100%;
 }

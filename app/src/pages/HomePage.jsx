@@ -7,14 +7,21 @@ const HomePage = () => {
   // TODO: ADD MIDDLEWARE TO VERIFY IS USER IS CONNECTED (endpoint /me)
 
   return (
-    <Layout className="home">
-      <h2>
-        Tentez de remporter une ou plusieurs pâtisseries grâce à notre jeu de
-        yams!
-      </h2>
-      <Link to="/game">Jouer</Link>
-      <PastriesList />
-    </Layout>
+    <>
+      <Layout className="home">
+        <div className="home-banner">
+          <div className="cta-container">
+            <h2 className="cta-text top">Jouez</h2>
+            <h3 className="cta-text bottom">
+              et tentez de remporter une ou plusieurs pâtisseries
+            </h3>
+
+            <Link to="/game">Jouer</Link>
+          </div>
+        </div>
+      </Layout>
+      {/* <PastriesList /> */}
+    </>
   );
 };
 

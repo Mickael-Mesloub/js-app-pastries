@@ -2,4 +2,10 @@
   display: flex;
   align-items: center;
   flex-direction: column;
+  background: url('/src/assets/images/background.jpg') no-repeat center center
+    fixed;
+  background-size: cover;
+  min-height: 100dvh;
+  width: 100%;
+  margin-top: -83px;
 }

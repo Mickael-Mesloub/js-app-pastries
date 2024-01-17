@@ -5,8 +5,12 @@
 }
 
 .button-logout {
-  color: $white;
-  background-color: $red;
+  color: $red;
+  border: 0.5px solid $red;
+  text-transform: uppercase;
+  font-size: 1.1em;
+  letter-spacing: 3px;
+  background: transparent;
 }
 
 .button-success {
