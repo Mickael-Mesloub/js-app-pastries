@@ -12,8 +12,7 @@
   }
 }
 
-.form-login,
-.add-pastry {
+.form-login {
   @include form;
   padding-right: 3em;
   gap: 1em;
