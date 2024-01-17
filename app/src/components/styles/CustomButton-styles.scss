@@ -9,6 +9,16 @@
   background-color: $red;
 }
 
+.button-success {
+  background-color: $green;
+  color: $white;
+}
+
+.button-error {
+  background-color: $red;
+  color: $white;
+}
+
 .button-disabled {
   background-color: $gray1;
   border-color: $gray1;
