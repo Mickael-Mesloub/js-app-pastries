@@ -1,4 +1,5 @@
 import { configureStore, createSlice } from '@reduxjs/toolkit';
+import gameReducer from './gameSlice';
 
 const initialState = { pastries: [{ name: 'Croissant' }] };
 
@@ -17,6 +18,7 @@ const pastriesSlice = createSlice({
 const store = configureStore({
   reducer: {
     pastries: pastriesSlice.reducer,
+    game: gameReducer,
   },
 });
 
