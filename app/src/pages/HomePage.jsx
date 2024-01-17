@@ -1,14 +1,11 @@
 import './styles/HomePage-styles.scss';
-import { useSelector } from 'react-redux';
 import Layout from '../components/Layout';
 import { Link } from 'react-router-dom';
+import PastriesList from '../components/PastriesList';
 
 const HomePage = () => {
-  const { pastries } = useSelector((state) => state.pastries);
+  // TODO: ADD MIDDLEWARE TO VERIFY IS USER IS CONNECTED (endpoint /me)
 
-  pastries.forEach((pastry) => {
-    console.log(pastry);
-  });
   return (
     <Layout className="home">
       <h2>
@@ -16,6 +13,7 @@ const HomePage = () => {
         yams!
       </h2>
       <Link to="/game">Jouer</Link>
+      <PastriesList />
     </Layout>
   );
 };
