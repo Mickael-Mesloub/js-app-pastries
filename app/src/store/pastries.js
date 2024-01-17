@@ -1,8 +1,8 @@
-import { configureStore, createSlice } from '@reduxjs/toolkit';
+import { createSlice } from '@reduxjs/toolkit';
 
 const initialState = { pastries: [{ name: 'Croissant' }] };
 
-const pastriesSlice = createSlice({
+export const pastriesSlice = createSlice({
   name: 'pastries',
   initialState,
   reducers: {
@@ -14,11 +14,4 @@ const pastriesSlice = createSlice({
   },
 });
 
-const store = configureStore({
-  reducer: {
-    pastries: pastriesSlice.reducer,
-    game: gameReducer,
-    user: authSliceAsync.reducer,
-  },
-});
-export default store;
+export const { addPastries } = pastriesSlice.actions;
