@@ -1,17 +1,20 @@
+@import '../../index.scss';
+
 .navbar {
   display: flex;
   align-items: center;
   justify-content: center;
   gap: 4em;
-  padding: 1em;
-  background-color: rgba(71, 159, 119, 0.371);
+  background-color: $gold1;
+  height: 83px;
 }
 
 .nav-link {
   display: inline-block;
   text-decoration: none;
   font-weight: 600;
-  color: rgb(59, 47, 47);
+  color: $black;
+  padding: 2em;
 
   &:hover {
     opacity: 0.75;

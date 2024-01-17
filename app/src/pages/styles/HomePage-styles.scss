@@ -1,13 +1,10 @@
+@import '../../index.scss';
+
 .main-home {
   > a {
-    padding: 1em;
-    background-color: black;
-    color: beige;
+    @include button;
     text-decoration: none;
-    border-radius: 12px;
     width: 5%;
-    text-align: center;
-    font-weight: 600;
 
     &:hover {
       opacity: 0.75;

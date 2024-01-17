@@ -11,8 +11,11 @@ const HomePage = () => {
   });
   return (
     <Layout className="home">
-      <h1>Hello pastries!</h1>
-      <Link to="/game">Game</Link>
+      <h2>
+        Tentez de remporter une ou plusieurs pâtisseries grâce à notre jeu de
+        yams!
+      </h2>
+      <Link to="/game">Jouer</Link>
     </Layout>
   );
 };
