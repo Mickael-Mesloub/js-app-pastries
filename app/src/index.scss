@@ -33,10 +33,7 @@ $black: rgb(42, 42, 42);
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  background-color: $gold1;
-  width: 20%;
-  padding: 2em;
-  gap: 8px;
+  width: 100%;
   border-radius: 1em;
 
   > input {
@@ -54,9 +51,6 @@ $black: rgb(42, 42, 42);
 
 body {
   font: 100% $font-stack;
-  //   background: url('/src/assets/images/background.jpg') no-repeat center center fixed;
-  //   background-size: cover;
-  //   min-height: 100dvh;
   margin: 0;
   width: 100%;
 }

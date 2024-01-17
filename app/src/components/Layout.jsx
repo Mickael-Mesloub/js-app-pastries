@@ -6,7 +6,9 @@ const Layout = ({ children, className }) => {
     <>
       <Navbar />
       <main className={`main${className ? ` main-${className}` : ''}`}>
-        {children}
+        <div className="banner">
+          <div className="banner-content-container">{children}</div>
+        </div>
       </main>
     </>
   );

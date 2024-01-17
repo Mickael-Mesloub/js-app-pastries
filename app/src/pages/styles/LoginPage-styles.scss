@@ -1,20 +1,45 @@
 @import '../../index.scss';
 
 .main-login {
-  justify-content: center;
-  height: calc(100vh - 83px);
+  align-items: flex-end;
+  justify-content: flex-end;
+
+  h2 {
+    text-transform: uppercase;
+    color: $gold2;
+    font-size: 2.5rem;
+    letter-spacing: 2px;
+  }
 }
 
-.form-login {
+.form-login,
+.add-pastry {
   @include form;
+  padding-right: 3em;
+  gap: 1em;
 
   > input[type='email'],
   input[type='password'] {
-    width: 50%;
+    background-color: transparent;
+    border: 0.5px solid $gold2;
+    width: 70%;
+    color: $gold2;
   }
 
   > input[type='submit'] {
     @include button;
+    text-decoration: none;
+    background: transparent;
+    text-transform: uppercase;
+    color: $gold2;
+    border: 0.5px solid $gold2;
+    border-radius: 1em;
     margin-top: 1em;
+    font-size: 1.5rem;
+    padding: 0.5em 7rem;
+
+    &:hover {
+      opacity: 0.75;
+    }
   }
 }
