@@ -1,4 +1,5 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
+import { toastError, toastSuccess } from '../components/Toast';
 
 const storedState = localStorage.getItem('reduxState');
 const initialState = storedState
@@ -21,7 +22,6 @@ export const login = createAsyncThunk('login', async (userData) => {
     },
     body: JSON.stringify(userData),
   });
-
   if (response.ok) {
     return response.json();
   } else {
@@ -47,14 +47,16 @@ export const authSliceAsync = createSlice({
       console.log('Connexion en cours...');
     });
     builder.addCase(login.rejected, (state, action) => {
-      console.log(action.payload);
+      console.log(action.error.message);
       state.isLoading = false;
+      toastError('Identifiants incorrects ⚠️');
       throw new Error('Authentication failed!');
     });
     builder.addCase(login.fulfilled, (state, action) => {
-      console.log(action.payload.message);
+      console.log(action.payload);
       state.user.isConnected = true;
       state.isLoading = false;
+      toastSuccess('Vous êtes connecté ! ✅');
       localStorage.setItem('reduxState', JSON.stringify(state));
     });
 
@@ -65,6 +67,7 @@ export const authSliceAsync = createSlice({
     });
     builder.addCase(logout.rejected, (state) => {
       state.isLoading = false;
+      toastError('La déconnexion a échouée ⚠️');
       throw new Error('Logout failed.');
     });
     builder.addCase(logout.fulfilled, (state, action) => {
@@ -72,6 +75,7 @@ export const authSliceAsync = createSlice({
       state.isLoading = false;
       state.user.isConnected = false;
       localStorage.setItem('reduxState', JSON.stringify(state));
+      toastSuccess('Vous êtes déconnecté ! ✅');
     });
   },
 });
