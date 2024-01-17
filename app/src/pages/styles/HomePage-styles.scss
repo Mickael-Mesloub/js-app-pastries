@@ -1,6 +1,7 @@
 @import '../../index.scss';
 
 .main-home {
+  gap: 2em;
   > a {
     @include button;
     text-decoration: none;
