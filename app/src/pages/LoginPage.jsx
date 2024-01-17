@@ -2,7 +2,6 @@ import { useDispatch, useSelector } from 'react-redux';
 import Layout from '../components/Layout';
 import { useEffect, useState } from 'react';
 import { login } from '../store/auth';
-import { useNavigate } from 'react-router-dom';
 import './styles/LoginPage-styles.scss';
 import AddPastryForm from '../components/CrudForms/AddPastryForm';
 
@@ -14,7 +13,6 @@ const LoginPage = () => {
 
   const state = useSelector((state) => state.user);
   const dispatch = useDispatch();
-  const navigate = useNavigate();
 
   const handleSubmit = (e) => {
     e.preventDefault();
