@@ -1,6 +1,7 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
+import { toastError, toastSuccess } from '../components/Toast';
 
-const initialState = { pastries: [], status: '' };
+const initialState = { pastries: [] };
 
 export const fetchAllPastriesAsync = createAsyncThunk(
   'get/pastries',
@@ -19,30 +20,53 @@ export const fetchAllPastriesAsync = createAsyncThunk(
   }
 );
 
+export const addPastry = createAsyncThunk('post/pastry', async (newPastry) => {
+  const response = await fetch(`${import.meta.env.VITE_API_URL}/api/pastrie`, {
+    method: 'POST',
+    credentials: 'include',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify(newPastry),
+  });
+  if (response.ok) {
+    return response.json();
+  } else {
+    throw new Error("L'ajout de la pâtisseries a échoué ⚠️");
+  }
+});
+
 export const pastriesSlice = createSlice({
   name: 'pastries',
   initialState,
   reducers: {
     // TODO: insert reducer functions here
-    addPastries: (state, action) => {
-      console.log(state.pastries);
-      state.pastries.push(action.payload);
-    },
   },
   extraReducers: (builder) => {
-    // get/pastries
-    builder.addCase(fetchAllPastriesAsync.pending, (state) => {
-      state.status = 'pending';
+    // fetchPastries
+    builder.addCase(fetchAllPastriesAsync.pending, () => {
       console.log('Récupération des pâtisseries en cours...');
     });
-    builder.addCase(fetchAllPastriesAsync.rejected, (state, action) => {
-      state.status = 'error';
+    builder.addCase(fetchAllPastriesAsync.rejected, (action) => {
       console.log(action.error.message);
     });
     builder.addCase(fetchAllPastriesAsync.fulfilled, (state, action) => {
-      state.status = 'success';
       console.log(action.payload);
       state.pastries = action.payload;
+    });
+
+    // addPatry
+    builder.addCase(addPastry.pending, () => {
+      console.log('Ajout de la pâtisserie en cours...');
+    });
+    builder.addCase(addPastry.rejected, (action) => {
+      console.log(action.error.message);
+      toastError("L'ajout de la pâtisseries a échoué ⚠️");
+    });
+    builder.addCase(addPastry.fulfilled, (state, action) => {
+      console.log('Pâtisserie ajoutée avec succès ✅ !', action.payload);
+      state.pastries.push(action.payload);
+      toastSuccess('Pâtisserie ajoutée avec succès ✅ !');
     });
   },
 });
