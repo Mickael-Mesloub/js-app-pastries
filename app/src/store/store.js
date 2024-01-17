@@ -1,4 +1,6 @@
 import { configureStore, createSlice } from '@reduxjs/toolkit';
+import gameReducer from './gameSlice';
+import { authSliceAsync } from './auth';
 
 const initialState = { pastries: [{ name: 'Croissant' }] };
 
