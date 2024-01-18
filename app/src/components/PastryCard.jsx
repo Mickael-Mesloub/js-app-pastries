@@ -11,11 +11,6 @@ const PastryCard = ({ pastry, isAdmin }) => {
   const [deletePastryModalVisible, setDeletePastryModalVisible] =
     useState(false);
 
-  const handleUpdate = (pastry) => {
-    // setUpdatePastryFormVisible(true);
-    console.log(pastry.name);
-  };
-
   const openUpdatePastryFormModal = () => {
     setUpdatePastryFormVisible(true);
   };
@@ -58,6 +53,7 @@ const PastryCard = ({ pastry, isAdmin }) => {
           />
         </div>
       )}
+
       {isAdmin && updatePastryFormVisible && (
         <CustomModal
           handleClose={closeUpdatePastryFormModal}
@@ -66,7 +62,6 @@ const PastryCard = ({ pastry, isAdmin }) => {
           <UpdatePastryForm
             selectedPastry={pastry}
             closeUpdatePastryFormModal={closeUpdatePastryFormModal}
-            handleUpdate={handleUpdate}
           />
         </CustomModal>
       )}
