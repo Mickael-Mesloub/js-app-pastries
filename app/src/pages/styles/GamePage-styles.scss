@@ -32,10 +32,16 @@
   display: flex;
   flex-direction: column;
   align-items: center;
+  padding: 2em;
+  gap: 2em;
 
   .game-section-title {
-    font-size: 2rem;
-    text-transform: uppercase;
+    @include section-title;
+  }
+
+  .game-rules {
+    text-align: center;
+    font-size: 1.1rem;
   }
 
   > .button-primary {

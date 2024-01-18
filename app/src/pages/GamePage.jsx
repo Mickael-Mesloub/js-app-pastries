@@ -186,20 +186,22 @@ const GamePage = () => {
 
       <section id="game" className="game-section">
         <h2 className="game-section-title">Jeu du Yams</h2>
-        <p>Vous avez {rollsLeft} lancés</p>
-        <p>
-          Si vous obtenez une paire (2 dés identiques), vous gagnez une
-          patisserie.
-        </p>
-        <p>
-          Si vous obtenez un brelan (3 dés identiques), vous gagnez 2
-          pâtisseries.
-        </p>
-        <p>
-          Si vous obtenez un carré (4 dés identiques), vous gagnez 3
-          pâtisseries.
-        </p>
-        <p>Bonne chance !!</p>
+        <div className="game-rules">
+          <p>Vous avez {rollsLeft} lancés</p>
+          <p>
+            Si vous obtenez une paire (2 dés identiques), vous gagnez une
+            patisserie.
+          </p>
+          <p>
+            Si vous obtenez un brelan (3 dés identiques), vous gagnez 2
+            pâtisseries.
+          </p>
+          <p>
+            Si vous obtenez un carré (4 dés identiques), vous gagnez 3
+            pâtisseries.
+          </p>
+          <p>Bonne chance !!</p>
+        </div>
 
         <div>{diceIcons}</div>
 

@@ -17,6 +17,7 @@ const HomePage = () => {
         <Link to="/game">Jouer</Link>
       </Layout>
       <section className="home-section">
+        <h2 className="home-section-title">Nos pâtisseries disponibles</h2>
         <PastriesList />
       </section>
     </>
