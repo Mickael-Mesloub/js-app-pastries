@@ -2,4 +2,27 @@
   display: flex;
   align-items: center;
   flex-direction: column;
+  background: url('/src/assets/images/background.jpg') no-repeat center center
+    fixed;
+  background-size: cover;
+  min-height: 100dvh;
+  width: 100%;
+  margin-top: -83px;
+
+  .banner {
+    display: flex;
+    justify-content: flex-end;
+    min-height: calc(100dvh - 83px);
+    width: 100%;
+  }
+
+  .banner-content-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1em;
+    max-width: 500px;
+    padding-top: 1em;
+    padding-right: 1.5em;
+  }
 }

@@ -1,0 +1,58 @@
+@import '../../index.scss';
+
+.main-game {
+  align-items: flex-end;
+  justify-content: flex-end;
+
+  .game-banner-title {
+    text-transform: uppercase;
+    font-size: 3rem;
+    color: $white;
+    margin-bottom: 0;
+    text-align: center;
+  }
+
+  .game-banner-icon-circle {
+    .game-banner-icon {
+      transition: all 0.25s ease-in-out;
+      &:hover {
+        transform: rotate(20deg);
+      }
+    }
+  }
+
+  .game-banner-icon {
+    color: $white;
+    cursor: pointer;
+  }
+}
+
+.game-section {
+  min-height: 100dvh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 2em;
+  gap: 2em;
+
+  .game-section-title {
+    @include section-title;
+  }
+
+  .game-not-connected {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 2em;
+    gap: 2em;
+  }
+
+  .game-rules {
+    text-align: center;
+    font-size: 1.1rem;
+  }
+
+  > .button-primary {
+    margin-top: 1rem;
+  }
+}

@@ -122,9 +122,9 @@ router.post("/pastrie", authentified, async (req: CustomRequest, res: Response) 
 router.put("/pastrie/:id", authentified, async (req: CustomRequest, res: Response) => {
     const id: string = req.params.id;
     const { name, quantity, image, choice } = trimAll(req.body);
-    const pastries : Pastrie[] | undefined = req.locals?.pastries
+    let pastries: Pastrie[] | undefined = req.locals?.pastries
 
-    const p: Pastrie | undefined = pastries?.find(p => p.id == id);
+    let p: Pastrie | undefined = pastries?.find(p => p.id == id);
 
     // on vérifie que la pâtisserie existe
     if (!p) {
@@ -133,12 +133,24 @@ router.put("/pastrie/:id", authentified, async (req: CustomRequest, res: Respons
         });
     }
 
-    // on assigne les nouvelles valeurs à la pâtisserie
-    p.name = name;
-    p.quantity = quantity;
-    p.image = image;
-    p.choice = choice;
-    await fs.writeFile(filePath, JSON.stringify(pastries), 'utf-8');
+    // mettre à jour les données
+    pastries = pastries?.map(p => {
+        if (p.id == id) {
+
+            return ({
+                ...p,
+                name: name ?? p.name,
+                quantity: quantity ?? p.quantity,
+                image: image ?? p.image,
+                choice: choice ?? p.choice
+            })
+        }
+
+        return p
+    });
+
+    if( pastries )
+        await fs.writeFile(filePath, JSON.stringify(pastries), 'utf-8');
 
     return res.json(p);
 });

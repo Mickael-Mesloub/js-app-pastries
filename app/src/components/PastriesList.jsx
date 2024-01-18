@@ -4,7 +4,7 @@ import { Fragment, useEffect } from 'react';
 import { fetchAllPastriesAsync } from '../store/pastries';
 import PastryCard from './PastryCard';
 
-const PastriesList = () => {
+const PastriesList = ({ isAdmin }) => {
   const authState = useSelector((state) => state.user);
   const { pastries } = useSelector((state) => state.pastries);
   const dispatch = useDispatch();
@@ -15,20 +15,17 @@ const PastriesList = () => {
     }
   }, []);
 
-  // TODO: add image prop when image path is correct
+  /** TODO:
+   * add image prop when image path is correct
+   * edit isAdmin condition
+   */
 
   return (
     <div className="pastries-cards-container">
       {pastries.map((pastry, i) => (
         <Fragment key={i}>
-          {!pastry.quantity || pastry.quantity === 0 ? null : (
-            <PastryCard
-              key={i}
-              name={pastry.name}
-              quantity={pastry.quantity}
-              quantityWon={pastry.quantityWon}
-              //   image={image}
-            />
+          {!isAdmin && (!pastry.quantity || pastry.quantity === '0') ? null : (
+            <PastryCard key={i} pastry={pastry} isAdmin={isAdmin} />
           )}
         </Fragment>
       ))}

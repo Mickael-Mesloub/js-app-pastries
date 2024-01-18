@@ -3,18 +3,29 @@
 .navbar {
   display: flex;
   align-items: center;
-  justify-content: center;
-  gap: 4em;
-  background-color: $gold1;
+  justify-content: space-between;
+  gap: 3em;
   height: 83px;
+  padding-right: 2em;
 }
 
+.logo {
+  padding-top: 0.5rem;
+  padding-left: 1rem;
+}
+
+.links {
+  padding-top: 1rem;
+}
 .nav-link {
   display: inline-block;
   text-decoration: none;
   font-weight: 600;
-  color: $black;
+  color: $gold2;
   padding: 2em;
+  font-size: 1.5em;
+  text-transform: uppercase;
+  letter-spacing: 3px;
 
   &:hover {
     opacity: 0.75;

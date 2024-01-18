@@ -1,0 +1,41 @@
+@import '../../index.scss';
+
+.main-admin {
+  align-items: flex-end;
+  justify-content: flex-end;
+
+  h2 {
+    color: $white;
+    text-transform: uppercase;
+    margin: 0;
+    font-size: 4rem;
+    margin-right: 2rem;
+    margin-top: 2rem;
+  }
+
+  .admin-arrow-down-icon:hover {
+    opacity: 0.85;
+  }
+}
+
+.back-office {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 2rem 2rem;
+  min-height: 100dvh;
+  gap: 1rem;
+
+  .back-office-presentation {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    .back-office-title {
+      @include section-title;
+    }
+    .back-office-explanation {
+      font-size: 1.1rem;
+    }
+  }
+}

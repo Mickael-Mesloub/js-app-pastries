@@ -1,9 +1,10 @@
 $font-stack: Helvetica, sans-serif;
 
 // colors
-$green: rgba(71, 159, 119, 0.371);
+$green: rgba(0, 107, 59, 0.879);
 $gold1: rgba(230, 186, 26, 0.703);
 $gold2: rgb(255, 200, 0);
+$orange: rgb(254, 116, 31);
 $red: rgb(204, 31, 31);
 $gray1: #e2e2e2;
 $gray2: #cccccc;
@@ -15,21 +16,54 @@ $black: rgb(42, 42, 42);
 
 @mixin button {
   font-weight: 600;
-  border: 0px;
   cursor: pointer;
   padding: 0.5em 2em;
-  background-color: $black;
-  color: $gold2;
+  color: $black;
   text-align: center;
   border-radius: 1em;
+  text-transform: uppercase;
+  font-size: 1.1em;
+  letter-spacing: 3px;
+  background: transparent;
+  border: 0.5px solid $black;
 
   &:hover {
     opacity: 0.75;
   }
 }
 
+@mixin form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  border-radius: 1em;
+
+  > input {
+    padding: 8px;
+    border-radius: 24px;
+    font-size: 1.25em;
+    text-align: center;
+  }
+
+  > input[type='submit'] {
+    @include button;
+    margin-top: 1em;
+  }
+}
+
 body {
   font: 100% $font-stack;
-  background-color: $body-background;
   margin: 0;
+  width: 100%;
+}
+
+@mixin section-title {
+  text-transform: uppercase;
+  text-align: center;
+  letter-spacing: 2px;
+  margin: 0;
+  font-weight: 700;
+  font-size: 2em;
 }

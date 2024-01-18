@@ -1,29 +1,71 @@
-import Layout from '../Layout';
+import './styles/AdminPastryCrudForm-styles.scss';
+import { checkAddPastryFormValidity } from '../../utils/form.utils';
+import { useDispatch } from 'react-redux';
+import { addPastry } from '../../store/pastries';
+import { useState } from 'react';
 
-const AddPastryForm = () => {
+const AddPastryForm = ({ handleCloseModal }) => {
+  const [pastry, setPastry] = useState({
+    name: '',
+    quantity: '',
+    image: '',
+  });
+
+  const dispatch = useDispatch();
+
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log('AddPastryForm');
+
+    if (
+      checkAddPastryFormValidity(pastry.image, pastry.name, pastry.quantity)
+    ) {
+      // dispatch...
+      dispatch(addPastry(pastry));
+      handleCloseModal();
+    } else {
+      console.log('FORM NON VALIDE');
+    }
   };
+
   return (
-    <Layout className="add-pastry">
-      <>
-        <form onSubmit={handleSubmit} className="form-add-pastry">
-          <h2>Ajouter une pâtisserie</h2>
+    <>
+      <form
+        id="form"
+        onSubmit={handleSubmit}
+        className="form-admin-pastry-crud"
+      >
+        <h2>Ajouter une pâtisserie</h2>
+        <input
+          required
+          type="text"
+          placeholder="Nom de la pâtisserie"
+          onChange={(e) => setPastry({ ...pastry, name: e.target.value })}
+        />
+        <input
+          type="number"
+          placeholder="Quantité"
+          required
+          onChange={(e) => setPastry({ ...pastry, quantity: e.target.value })}
+        />
+        <div className="file-input-wrapper">
           <input
-            type="text"
-            placeholder="Nom de la pâtisserie"
-            onChange={(e) => console.log(e.target.value)}
+            type="file"
+            id="image"
+            name="image"
+            accept="image/jpeg, image/png"
+            required
+            aria-required="true"
+            onChange={(e) =>
+              setPastry({ ...pastry, image: e.target.files[0].name })
+            }
           />
-          <input
-            type="number"
-            placeholder="Quantité"
-            onChange={(e) => console.log(e.target.value)}
-          />
-          <input type="submit" value="Ajouter" />
-        </form>
-      </>
-    </Layout>
+          <label htmlFor="image" className="file-input-label">
+            {pastry.image || 'Choisissez une image'}
+          </label>
+        </div>
+        <input type="submit" value="Ajouter" />
+      </form>
+    </>
   );
 };
 
