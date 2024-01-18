@@ -10,12 +10,17 @@
     margin: 0;
   }
   .top {
-    font-size: 8em;
+    font-size: 7em;
+    text-decoration: underline;
+    text-underline-offset: 0.12em; // space between text and underlining line
+    color: $gold2;
+    margin-bottom: 0.12em;
   }
   .bottom {
-    font-size: 2.5rem;
+    font-size: 2.2rem;
     text-align: center;
     text-wrap: wrap;
+    opacity: 0.85;
   }
 
   a {
