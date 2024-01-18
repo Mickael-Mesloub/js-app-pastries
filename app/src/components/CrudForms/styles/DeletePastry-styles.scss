@@ -1,5 +1,15 @@
+@import '../../../index.scss';
+
 .delete-modal-title {
   text-align: center;
+}
+
+.delete-modal-pastry-name {
+  text-align: center;
+  color: $orange;
+  font-weight: 600;
+  font-size: 1.2rem;
+  margin-bottom: 1.5rem;
 }
 
 .buttons {
