@@ -42,4 +42,11 @@
     border: 1px solid $black;
     margin: 0 auto;
   }
+
+  .pastry-card-footer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+  }
 }
