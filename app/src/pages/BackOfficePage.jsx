@@ -43,7 +43,7 @@ const BackOfficePage = () => {
         />
         {formVisible && (
           <CustomModal handleClose={handleCloseModal} show={formVisible}>
-            <AddPastryForm />
+            <AddPastryForm handleCloseModal={handleCloseModal} />
           </CustomModal>
         )}
       </section>

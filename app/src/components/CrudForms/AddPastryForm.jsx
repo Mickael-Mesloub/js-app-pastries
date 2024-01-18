@@ -1,10 +1,10 @@
-import './AdminPage-styles.scss';
+import './AddPastryForm-styles.scss';
 import { checkFormValidity } from '../../utils/form.utils';
 import { useDispatch } from 'react-redux';
 import { addPastry } from '../../store/pastries';
 import { useState } from 'react';
 
-const AddPastryForm = () => {
+const AddPastryForm = ({ handleCloseModal }) => {
   const [pastry, setPastry] = useState({
     name: '',
     quantity: '',
