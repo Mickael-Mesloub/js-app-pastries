@@ -32,9 +32,32 @@ export const addPastry = createAsyncThunk('post/pastry', async (newPastry) => {
   if (response.ok) {
     return response.json();
   } else {
-    throw new Error("L'ajout de la pâtisseries a échoué ⚠️");
+    throw new Error("L'ajout de la pâtisserie a échoué ⚠️");
   }
 });
+
+export const updatePastry = createAsyncThunk(
+  'put/pastry',
+  async ([selectedPastryId, updatedPastry]) => {
+    console.log(selectedPastryId, { ...updatedPastry });
+    const response = await fetch(
+      `${import.meta.env.VITE_API_URL}/api/pastrie/${selectedPastryId}`,
+      {
+        method: 'PUT',
+        credentials: 'include',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(updatedPastry),
+      }
+    );
+    if (response.ok) {
+      return response.json();
+    } else {
+      throw new Error('La modification de la pâtisserie a échoué ⚠️');
+    }
+  }
+);
 
 export const deletePastry = createAsyncThunk(
   'delete/pastry',
@@ -53,7 +76,7 @@ export const deletePastry = createAsyncThunk(
       return response.json();
     } else {
       console.log(`DELETE FAILED : ${JSON.stringify(response)}`);
-      throw new Error('La suppression de la pâtisseries a échoué ⚠️');
+      throw new Error('La suppression de la pâtisserie a échoué ⚠️');
     }
   }
 );
@@ -83,12 +106,32 @@ export const pastriesSlice = createSlice({
     });
     builder.addCase(addPastry.rejected, (action) => {
       console.log(action.error.message);
-      toastError("L'ajout de la pâtisseries a échoué ⚠️");
+      toastError("L'ajout de la pâtisserie a échoué ⚠️");
     });
     builder.addCase(addPastry.fulfilled, (state, action) => {
       console.log('Pâtisserie ajoutée avec succès ✅ !', action.payload);
       state.pastries.push(action.payload);
       toastSuccess('Pâtisserie ajoutée avec succès ✅ !');
+    });
+
+    // updatePastry
+    builder.addCase(updatePastry.pending, () => {
+      console.log('Modification de la pâtisserie en cours...');
+    });
+    builder.addCase(updatePastry.rejected, (action) => {
+      console.log(action.error);
+      toastError('La modification de la pâtisserie a échouée ⚠️');
+    });
+    builder.addCase(updatePastry.fulfilled, (state, action) => {
+      console.log('Pâtisserie modifiée avec succès ✅ !', action.payload);
+      toastSuccess('Pâtisserie modifiée avec succès ✅ !');
+      state.pastries = state.pastries.map((pastry) => {
+        if (pastry.id === action.payload.id) {
+          return action.payload;
+        } else {
+          return pastry;
+        }
+      });
     });
 
     // deletePastry
@@ -97,12 +140,11 @@ export const pastriesSlice = createSlice({
     });
     builder.addCase(deletePastry.rejected, (action) => {
       console.log(action.error);
-      toastError('La suppression de la pâtisseries a échouée ⚠️');
+      toastError('La suppression de la pâtisserie a échouée ⚠️');
     });
     builder.addCase(deletePastry.fulfilled, (state, action) => {
       console.log('Pâtisserie supprimée avec succès ✅ !', action.payload);
       state.pastries = action.payload;
-      // TODO: modifier le state
       toastSuccess('Pâtisserie supprimée avec succès ✅ !');
     });
   },
