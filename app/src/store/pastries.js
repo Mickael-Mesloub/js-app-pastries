@@ -92,7 +92,7 @@ export const pastriesSlice = createSlice({
     builder.addCase(fetchAllPastriesAsync.pending, () => {
       console.log('Récupération des pâtisseries en cours...');
     });
-    builder.addCase(fetchAllPastriesAsync.rejected, (action) => {
+    builder.addCase(fetchAllPastriesAsync.rejected, (_, action) => {
       console.log(action.error.message);
     });
     builder.addCase(fetchAllPastriesAsync.fulfilled, (state, action) => {
