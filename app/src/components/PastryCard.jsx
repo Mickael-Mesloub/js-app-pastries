@@ -61,7 +61,7 @@ const PastryCard = ({ pastry, isAdmin }) => {
         >
           <UpdatePastryForm
             selectedPastry={pastry}
-            closeUpdatePastryFormModal={closeUpdatePastryFormModal}
+            handleCloseModal={closeUpdatePastryFormModal}
           />
         </CustomModal>
       )}
