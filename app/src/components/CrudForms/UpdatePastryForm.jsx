@@ -2,10 +2,14 @@ import './styles/AdminPastryCrudForm-styles.scss';
 import { checkFormValidity } from '../../utils/form.utils';
 import { useDispatch } from 'react-redux';
 import { addPastry } from '../../store/pastries';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 
-const AddPastryForm = ({ handleCloseModal }) => {
-  const [pastry, setPastry] = useState({
+const UpdatePastryForm = ({ selectedPastry, handleCloseModal }) => {
+  /** TODO:
+   * dispatch updatePastry dans le handleSubmit
+   */
+
+  const [newPastry, setNewPastry] = useState({
     name: '',
     quantity: '',
     image: '',
@@ -16,14 +20,18 @@ const AddPastryForm = ({ handleCloseModal }) => {
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    if (checkFormValidity(pastry.image, pastry.name, pastry.quantity)) {
+    if (
+      checkFormValidity(newPastry.image, newPastry.name, newPastry.quantity)
+    ) {
       // dispatch...
-      dispatch(addPastry(pastry));
+      //   dispatch(updatePastry(pastry));
       handleCloseModal();
     } else {
       console.log('FORM NON VALIDE');
     }
   };
+
+  if (selectedPastry) console.log(selectedPastry);
 
   return (
     <>
@@ -32,18 +40,20 @@ const AddPastryForm = ({ handleCloseModal }) => {
         onSubmit={handleSubmit}
         className="form-admin-pastry-crud"
       >
-        <h2>Ajouter une pâtisserie</h2>
+        <h2>Modifier une pâtisserie</h2>
         <input
           required
           type="text"
-          placeholder="Nom de la pâtisserie"
-          onChange={(e) => setPastry({ ...pastry, name: e.target.value })}
+          placeholder={selectedPastry.name}
+          onChange={(e) => setNewPastry({ ...newPastry, name: e.target.value })}
         />
         <input
           type="number"
-          placeholder="Quantité"
+          placeholder={`Quantité: ${selectedPastry.quantity}`}
           required
-          onChange={(e) => setPastry({ ...pastry, quantity: e.target.value })}
+          onChange={(e) =>
+            setNewPastry({ ...newPastry, quantity: e.target.value })
+          }
         />
         <div className="file-input-wrapper">
           <input
@@ -54,17 +64,17 @@ const AddPastryForm = ({ handleCloseModal }) => {
             required
             aria-required="true"
             onChange={(e) =>
-              setPastry({ ...pastry, image: e.target.files[0].name })
+              setNewPastry({ ...newPastry, image: e.target.files[0].name })
             }
           />
           <label htmlFor="image" className="file-input-label">
-            {pastry.image || 'Choisissez une image'}
+            {newPastry.image || 'Choisissez une image'}
           </label>
         </div>
-        <input type="submit" value="Ajouter" />
+        <input type="submit" value="Modifier" />
       </form>
     </>
   );
 };
 
-export default AddPastryForm;
+export default UpdatePastryForm;

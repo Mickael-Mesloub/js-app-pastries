@@ -1,27 +1,47 @@
+import { useState } from 'react';
+import UpdatePastryForm from './CrudForms/UpdatePastryForm';
 import CustomButton from './CustomButton';
+import CustomModal from './CustomModal';
 import './styles/PastryCard-styles.scss';
+import DeletePastry from './CrudForms/DeletePastry';
 
-const PastryCard = ({ id, name, image, quantity, quantityWon, isAdmin }) => {
+const PastryCard = ({ pastry, isAdmin }) => {
   // TODO: display image when path is correct
+  const [updatePastryFormVisible, setUpdatePastryFormVisible] = useState(false);
+  const [deletePastryModalVisible, setDeletePastryModalVisible] =
+    useState(false);
 
-  const handleUpdate = () => {
-    console.log('Update');
+  const handleUpdate = (pastry) => {
+    // setUpdatePastryFormVisible(true);
+    console.log(pastry.name);
   };
 
-  const handleDelete = () => {
-    console.log('Delete');
+  const openUpdatePastryFormModal = () => {
+    setUpdatePastryFormVisible(true);
+  };
+
+  const closeUpdatePastryFormModal = () => {
+    setUpdatePastryFormVisible(false);
+  };
+
+  const openDeletePastryModal = () => {
+    setDeletePastryModalVisible(true);
+  };
+
+  const closeDeletePastryModal = () => {
+    setDeletePastryModalVisible(false);
   };
 
   return (
     <div className="pastry-card">
       <div className="pastry-image">
-        <img src={image} aria-label={`Image de ${name}`} />
+        <img src={pastry.image} aria-label={`Image de ${pastry.name}`} />
       </div>
       <div className="pastry-text">
-        <p className="pastry-name">{name}</p>
+        <p className="pastry-name">{pastry.name}</p>
         <div className="separator" />
-        <p>Quantité disponible: {quantity}</p>
-        {isAdmin && <p>Quantité gagnée: {quantityWon ?? '0'}</p>}
+        <p>Quantité disponible: {pastry.quantity}</p>
+        {isAdmin && <p>Quantité gagnée: {pastry.quantityWon ?? '0'}</p>}
       </div>
       {isAdmin && (
         <div className="pastry-card-footer">
@@ -29,14 +49,38 @@ const PastryCard = ({ id, name, image, quantity, quantityWon, isAdmin }) => {
           <CustomButton
             text="Modifier la pâtisserie"
             type="danger"
-            onClick={handleUpdate}
+            onClick={openUpdatePastryFormModal}
           />
           <CustomButton
             text="Supprimer la pâtisserie"
             type="error"
-            onClick={handleDelete}
+            onClick={openDeletePastryModal}
           />
         </div>
+      )}
+      {isAdmin && updatePastryFormVisible && (
+        <CustomModal
+          handleClose={closeUpdatePastryFormModal}
+          show={updatePastryFormVisible}
+        >
+          <UpdatePastryForm
+            selectedPastry={pastry}
+            closeUpdatePastryFormModal={closeUpdatePastryFormModal}
+            handleUpdate={handleUpdate}
+          />
+        </CustomModal>
+      )}
+
+      {isAdmin && deletePastryModalVisible && (
+        <CustomModal
+          handleClose={closeDeletePastryModal}
+          show={deletePastryModalVisible}
+        >
+          <DeletePastry
+            selectedPastry={pastry}
+            cancel={closeDeletePastryModal}
+          />
+        </CustomModal>
       )}
     </div>
   );

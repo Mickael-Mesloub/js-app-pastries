@@ -1,9 +1,11 @@
 import './styles/PastriesList-styles.scss';
 import { useDispatch, useSelector } from 'react-redux';
-import { Fragment, useEffect } from 'react';
+import { Fragment, useEffect, useState } from 'react';
 import { fetchAllPastriesAsync } from '../store/pastries';
 import PastryCard from './PastryCard';
 import Image from '../assets/images/pastries.jpg';
+import CustomModal from './CustomModal';
+import UpdatePastryForm from './CrudForms/UpdatePastryForm';
 
 const PastriesList = ({ isAdmin }) => {
   const authState = useSelector((state) => state.user);
@@ -26,15 +28,7 @@ const PastriesList = ({ isAdmin }) => {
       {pastries.map((pastry, i) => (
         <Fragment key={i}>
           {!isAdmin && (!pastry.quantity || pastry.quantity === '0') ? null : (
-            <PastryCard
-              key={i}
-              id={pastry.id}
-              name={pastry.name}
-              quantity={pastry.quantity}
-              quantityWon={pastry.quantityWon}
-              image={Image}
-              isAdmin={isAdmin}
-            />
+            <PastryCard key={i} pastry={pastry} isAdmin={isAdmin} />
           )}
         </Fragment>
       ))}

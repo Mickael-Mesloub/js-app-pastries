@@ -1,6 +1,6 @@
-@import '../../index.scss';
+@import '../../../index.scss';
 
-.form-add-pastry {
+.form-admin-pastry-crud {
   @include form;
 
   > input {

@@ -7,23 +7,25 @@ import AddPastryForm from '../components/CrudForms/AddPastryForm';
 import CustomModal from '../components/CustomModal';
 import { useState } from 'react';
 import PastriesList from '../components/PastriesList';
+import UpdatePastryForm from '../components/CrudForms/UpdatePastryForm';
 
 const BackOfficePage = () => {
-  const [formVisible, setFormVisible] = useState(false);
+  const [addPastryFormVisible, setAddPastryFormVisible] = useState(false);
 
-  const handleOpenModal = () => {
-    setFormVisible(true);
+  const openAddPastryFormModal = () => {
+    setAddPastryFormVisible(true);
   };
 
-  const handleCloseModal = () => {
-    setFormVisible(false);
+  const closeAddPastryFormModal = () => {
+    setAddPastryFormVisible(false);
   };
+
   return (
     <>
       <Layout className="admin">
         <>
           <h2>Back-office</h2>
-          <a href="#back-office">
+          <a href="#back-office" className="admin-arrow-down-icon">
             <FontAwesomeIcon icon={faCircleDown} size="5x" color="white" />
           </a>
         </>
@@ -40,13 +42,17 @@ const BackOfficePage = () => {
         <CustomButton
           type="primary"
           text={'Ajouter une pâtisserie'}
-          onClick={handleOpenModal}
+          onClick={openAddPastryFormModal}
         />
-        {formVisible && (
-          <CustomModal handleClose={handleCloseModal} show={formVisible}>
-            <AddPastryForm handleCloseModal={handleCloseModal} />
+        {addPastryFormVisible && (
+          <CustomModal
+            handleClose={closeAddPastryFormModal}
+            show={addPastryFormVisible}
+          >
+            <AddPastryForm closeAddPastryFormModal={closeAddPastryFormModal} />
           </CustomModal>
         )}
+
         <PastriesList isAdmin={true} />
       </section>
     </>
