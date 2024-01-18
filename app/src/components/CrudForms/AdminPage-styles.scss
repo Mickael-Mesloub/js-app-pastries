@@ -1,19 +1,5 @@
 @import '../../index.scss';
 
-.main-admin {
-  align-items: flex-end;
-  justify-content: flex-end;
-
-  h2 {
-    color: $white;
-    text-transform: uppercase;
-    margin: 0;
-    font-size: 4rem;
-    margin-right: 2rem;
-    margin-top: 2rem;
-  }
-}
-
 .form-add-pastry {
   @include form;
 
