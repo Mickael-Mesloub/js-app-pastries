@@ -6,6 +6,7 @@ import Layout from '../components/Layout';
 import AddPastryForm from '../components/CrudForms/AddPastryForm';
 import CustomModal from '../components/CustomModal';
 import { useState } from 'react';
+import PastriesList from '../components/PastriesList';
 
 const BackOfficePage = () => {
   const [formVisible, setFormVisible] = useState(false);
@@ -46,6 +47,7 @@ const BackOfficePage = () => {
             <AddPastryForm handleCloseModal={handleCloseModal} />
           </CustomModal>
         )}
+        <PastriesList isAdmin={true} />
       </section>
     </>
   );
