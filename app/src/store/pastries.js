@@ -36,6 +36,28 @@ export const addPastry = createAsyncThunk('post/pastry', async (newPastry) => {
   }
 });
 
+export const deletePastry = createAsyncThunk(
+  'delete/pastry',
+  async (selectedPastryId) => {
+    const response = await fetch(
+      `${import.meta.env.VITE_API_URL}/api/pastrie/${selectedPastryId}`,
+      {
+        method: 'DELETE',
+        credentials: 'include',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+      }
+    );
+    if (response.ok) {
+      return response.json();
+    } else {
+      console.log(`DELETE FAILED : ${JSON.stringify(response)}`);
+      throw new Error('La suppression de la pâtisseries a échoué ⚠️');
+    }
+  }
+);
+
 export const pastriesSlice = createSlice({
   name: 'pastries',
   initialState,
@@ -67,6 +89,21 @@ export const pastriesSlice = createSlice({
       console.log('Pâtisserie ajoutée avec succès ✅ !', action.payload);
       state.pastries.push(action.payload);
       toastSuccess('Pâtisserie ajoutée avec succès ✅ !');
+    });
+
+    // deletePastry
+    builder.addCase(deletePastry.pending, () => {
+      console.log('Suppression de la pâtisserie en cours...');
+    });
+    builder.addCase(deletePastry.rejected, (action) => {
+      console.log(action.error);
+      toastError('La suppression de la pâtisseries a échouée ⚠️');
+    });
+    builder.addCase(deletePastry.fulfilled, (state, action) => {
+      console.log('Pâtisserie supprimée avec succès ✅ !', action.payload);
+      state.pastries = action.payload;
+      // TODO: modifier le state
+      toastSuccess('Pâtisserie supprimée avec succès ✅ !');
     });
   },
 });
