@@ -1,18 +1,20 @@
 import './styles/AdminPastryCrudForm-styles.scss';
-import { checkFormValidity } from '../../utils/form.utils';
+import { checkUpdatePastryFormValidity } from '../../utils/form.utils';
 import { useDispatch } from 'react-redux';
-import { addPastry } from '../../store/pastries';
 import { useEffect, useState } from 'react';
+import { updatePastry } from '../../store/pastries';
+import { toastError } from '../Toast';
 
 const UpdatePastryForm = ({ selectedPastry, handleCloseModal }) => {
   /** TODO:
    * dispatch updatePastry dans le handleSubmit
+   * add image preview and modification
    */
 
   const [newPastry, setNewPastry] = useState({
-    name: '',
-    quantity: '',
-    image: '',
+    name: selectedPastry.name,
+    quantity: selectedPastry.quantity,
+    image: selectedPastry.image,
   });
 
   const dispatch = useDispatch();
@@ -21,17 +23,28 @@ const UpdatePastryForm = ({ selectedPastry, handleCloseModal }) => {
     e.preventDefault();
 
     if (
-      checkFormValidity(newPastry.image, newPastry.name, newPastry.quantity)
+      checkUpdatePastryFormValidity(
+        newPastry.image,
+        newPastry.name,
+        newPastry.quantity
+      )
     ) {
       // dispatch...
-      //   dispatch(updatePastry(pastry));
+      dispatch(updatePastry([selectedPastry.id, newPastry]));
       handleCloseModal();
     } else {
       console.log('FORM NON VALIDE');
+      toastError(
+        'Vous devez remplir au moins un des champs du formulaire pour le valider ⚠️'
+      );
     }
   };
 
   if (selectedPastry) console.log(selectedPastry);
+
+  useEffect(() => {
+    console.log(newPastry);
+  }, [newPastry]);
 
   return (
     <>
@@ -42,15 +55,11 @@ const UpdatePastryForm = ({ selectedPastry, handleCloseModal }) => {
       >
         <h2>Modifier une pâtisserie</h2>
         <input
-          required
           type="text"
-          placeholder={selectedPastry.name}
           onChange={(e) => setNewPastry({ ...newPastry, name: e.target.value })}
         />
         <input
           type="number"
-          placeholder={`Quantité: ${selectedPastry.quantity}`}
-          required
           onChange={(e) =>
             setNewPastry({ ...newPastry, quantity: e.target.value })
           }
@@ -61,7 +70,6 @@ const UpdatePastryForm = ({ selectedPastry, handleCloseModal }) => {
             id="image"
             name="image"
             accept="image/jpeg, image/png"
-            required
             aria-required="true"
             onChange={(e) =>
               setNewPastry({ ...newPastry, image: e.target.files[0].name })

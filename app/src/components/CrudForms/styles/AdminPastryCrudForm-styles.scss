@@ -2,6 +2,7 @@
 
 .form-admin-pastry-crud {
   @include form;
+  gap: 0.5rem;
 
   > input {
     font-size: 1em;
