@@ -1,0 +1,24 @@
+.back-office {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 2rem 2rem 0;
+  min-height: 100dvh;
+  gap: 1rem;
+
+  .back-office-presentation {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    .back-office-title {
+      text-align: center;
+      font-size: 2rem;
+      text-transform: uppercase;
+      margin: 0;
+    }
+    .back-office-explanation {
+      font-size: 1.1rem;
+    }
+  }
+}
