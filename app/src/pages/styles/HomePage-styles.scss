@@ -10,14 +10,15 @@
     margin: 0;
   }
   .top {
-    font-size: 7em;
+    font-size: 4.5em;
     text-decoration: underline;
     text-underline-offset: 0.12em; // space between text and underlining line
     color: $gold2;
     margin-bottom: 0.12em;
+    margin-top: 3rem;
   }
   .bottom {
-    font-size: 2.2rem;
+    font-size: 1.5rem;
     text-align: center;
     text-wrap: wrap;
     opacity: 0.85;

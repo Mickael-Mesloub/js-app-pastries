@@ -3,7 +3,7 @@
 .navbar {
   display: flex;
   align-items: center;
-  justify-content: flex-end;
+  justify-content: space-between;
   gap: 3em;
   height: 83px;
   padding-right: 2em;
@@ -11,6 +11,14 @@
   top: 0;
 }
 
+.logo {
+  padding-top: 0.5rem;
+  padding-left: 1rem;
+}
+
+.links {
+  padding-top: 1rem;
+}
 .nav-link {
   display: inline-block;
   text-decoration: none;
