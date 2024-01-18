@@ -39,6 +39,14 @@
     @include section-title;
   }
 
+  .game-not-connected {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 2em;
+    gap: 2em;
+  }
+
   .game-rules {
     text-align: center;
     font-size: 1.1rem;

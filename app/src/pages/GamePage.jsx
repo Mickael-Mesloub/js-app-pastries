@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {
@@ -8,8 +8,6 @@ import {
   faDiceFour,
   faDiceFive,
   faDiceSix,
-  faCircleDown,
-  faDice,
 } from '@fortawesome/free-solid-svg-icons';
 import {
   setRollsLeft,
@@ -21,8 +19,12 @@ import {
 import Layout from '../components/Layout';
 import './styles/GamePage-styles.scss';
 import CustomButton from '../components/CustomButton';
+import { useNavigate } from 'react-router-dom';
 
 const GamePage = () => {
+  const state = useSelector((state) => state.user);
+  const navigate = useNavigate();
+
   const dispatch = useDispatch();
   const { rollsLeft, won, lost, diceValues, data } = useSelector(
     (state) => state.game
@@ -185,58 +187,72 @@ const GamePage = () => {
       </Layout>
 
       <section id="game" className="game-section">
-        <h2 className="game-section-title">Jeu du Yams</h2>
-        <div className="game-rules">
-          <p>Vous avez {rollsLeft} lancés</p>
-          <p>
-            Si vous obtenez une paire (2 dés identiques), vous gagnez une
-            patisserie.
-          </p>
-          <p>
-            Si vous obtenez un brelan (3 dés identiques), vous gagnez 2
-            pâtisseries.
-          </p>
-          <p>
-            Si vous obtenez un carré (4 dés identiques), vous gagnez 3
-            pâtisseries.
-          </p>
-          <p>Bonne chance !!</p>
-        </div>
-
-        <div>{diceIcons}</div>
-
-        {won && data.length === 0 && (
-          <div>
-            <p>
-              BRAVO, vous avez gagné ! Malheureusement il n'y a plus de
-              patisseries disponibles...
+        {!state.user.isConnected ? (
+          <div className="game-not-connected">
+            <p className="game-section-title">
+              Vous devez être connecté pour pouvoir jouer !
             </p>
+            <CustomButton
+              text="Me connecter"
+              onClick={() => navigate('/login')}
+            />
           </div>
-        )}
+        ) : (
+          <>
+            <h2 className="game-section-title">Jeu du Yams</h2>
+            <div className="game-rules">
+              <p>Vous avez {rollsLeft} lancés</p>
+              <p>
+                Si vous obtenez une paire (2 dés identiques), vous gagnez une
+                patisserie.
+              </p>
+              <p>
+                Si vous obtenez un brelan (3 dés identiques), vous gagnez 2
+                pâtisseries.
+              </p>
+              <p>
+                Si vous obtenez un carré (4 dés identiques), vous gagnez 3
+                pâtisseries.
+              </p>
+              <p>Bonne chance !!</p>
+            </div>
 
-        {won && data.length > 0 && (
-          <div>
-            <p>BRAVO, vous avez gagné :</p>
-            {data.map((item) => (
-              <div key={item.id}>
-                <p>Nom: {item.name}</p>
-                <img src={item.image} alt={item.name} />
+            <div>{diceIcons}</div>
+
+            {won && data.length === 0 && (
+              <div>
+                <p>
+                  BRAVO, vous avez gagné ! Malheureusement il n'y a plus de
+                  patisseries disponibles...
+                </p>
               </div>
-            ))}
-          </div>
-        )}
+            )}
 
-        {lost && <p>PERDU</p>}
+            {won && data.length > 0 && (
+              <div>
+                <p>BRAVO, vous avez gagné :</p>
+                {data.map((item) => (
+                  <div key={item.id}>
+                    <p>Nom: {item.name}</p>
+                    <img src={item.image} alt={item.name} />
+                  </div>
+                ))}
+              </div>
+            )}
 
-        {!won && rollsLeft > 0 && (
-          <CustomButton
-            type="primary"
-            onClick={handleRollDice}
-            text={`Lancer les dés (${rollsLeft} essai${
-              rollsLeft !== 1 ? 's' : ''
-            } restant${rollsLeft !== 1 ? 's' : ''})`}
-            isDisabled={rollsLeft === 0}
-          />
+            {lost && <p>PERDU</p>}
+
+            {!won && rollsLeft > 0 && (
+              <CustomButton
+                type="primary"
+                onClick={handleRollDice}
+                text={`Lancer les dés (${rollsLeft} essai${
+                  rollsLeft !== 1 ? 's' : ''
+                } restant${rollsLeft !== 1 ? 's' : ''})`}
+                isDisabled={rollsLeft === 0}
+              />
+            )}
+          </>
         )}
       </section>
     </>
