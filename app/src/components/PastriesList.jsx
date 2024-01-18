@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { Fragment, useEffect } from 'react';
 import { fetchAllPastriesAsync } from '../store/pastries';
 import PastryCard from './PastryCard';
+import Image from '../assets/images/pastries.jpg';
 
 const PastriesList = () => {
   const authState = useSelector((state) => state.user);
@@ -27,7 +28,7 @@ const PastriesList = () => {
               name={pastry.name}
               quantity={pastry.quantity}
               quantityWon={pastry.quantityWon}
-              //   image={image}
+              image={Image}
             />
           )}
         </Fragment>
