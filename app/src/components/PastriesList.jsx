@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { Fragment, useEffect } from 'react';
 import { fetchAllPastriesAsync } from '../store/pastries';
 import PastryCard from './PastryCard';
+
 const PastriesList = ({ isAdmin }) => {
   const authState = useSelector((state) => state.user);
   const { pastries } = useSelector((state) => state.pastries);
