@@ -1,5 +1,5 @@
 import './styles/AdminPastryCrudForm-styles.scss';
-import { checkFormValidity } from '../../utils/form.utils';
+import { checkAddPastryFormValidity } from '../../utils/form.utils';
 import { useDispatch } from 'react-redux';
 import { addPastry } from '../../store/pastries';
 import { useState } from 'react';
@@ -16,7 +16,9 @@ const AddPastryForm = ({ handleCloseModal }) => {
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    if (checkFormValidity(pastry.image, pastry.name, pastry.quantity)) {
+    if (
+      checkAddPastryFormValidity(pastry.image, pastry.name, pastry.quantity)
+    ) {
       // dispatch...
       dispatch(addPastry(pastry));
       handleCloseModal();
