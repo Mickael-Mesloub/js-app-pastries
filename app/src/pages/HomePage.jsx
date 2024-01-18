@@ -16,7 +16,7 @@ const HomePage = () => {
 
         <Link to="/game">Jouer</Link>
       </Layout>
-      {/* <PastriesList /> */}
+      <PastriesList />
     </>
   );
 };
