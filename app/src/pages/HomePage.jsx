@@ -16,7 +16,9 @@ const HomePage = () => {
 
         <Link to="/game">Jouer</Link>
       </Layout>
-      <PastriesList />
+      <section className="home-section">
+        <PastriesList />
+      </section>
     </>
   );
 };
