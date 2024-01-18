@@ -7,7 +7,6 @@ import AddPastryForm from '../components/CrudForms/AddPastryForm';
 import CustomModal from '../components/CustomModal';
 import { useState } from 'react';
 import PastriesList from '../components/PastriesList';
-import UpdatePastryForm from '../components/CrudForms/UpdatePastryForm';
 
 const BackOfficePage = () => {
   const [addPastryFormVisible, setAddPastryFormVisible] = useState(false);
@@ -49,7 +48,7 @@ const BackOfficePage = () => {
             handleClose={closeAddPastryFormModal}
             show={addPastryFormVisible}
           >
-            <AddPastryForm closeAddPastryFormModal={closeAddPastryFormModal} />
+            <AddPastryForm handleCloseModal={closeAddPastryFormModal} />
           </CustomModal>
         )}
 
