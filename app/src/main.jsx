@@ -9,6 +9,7 @@ import ContactPage from './pages/ContactPage.jsx';
 import LoginPage from './pages/LoginPage.jsx';
 import GamePage from './pages/GamePage.jsx';
 import { Toast } from './components/Toast.jsx';
+import NotFoundPage from './pages/NotFoundPage.jsx';
 
 const router = createBrowserRouter([
   {
@@ -27,6 +28,7 @@ const router = createBrowserRouter([
     path: '/game',
     element: <GamePage />,
   },
+  { path: '*', element: <NotFoundPage /> },
 ]);
 
 ReactDOM.createRoot(document.getElementById('root')).render(

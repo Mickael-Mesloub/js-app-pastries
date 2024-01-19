@@ -1,0 +1,16 @@
+.not-found {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2rem;
+  padding: 2rem;
+
+  > h2,
+  p {
+    margin: 0;
+  }
+  > p {
+    font-size: 1.2rem;
+    font-weight: 600;
+  }
+}
