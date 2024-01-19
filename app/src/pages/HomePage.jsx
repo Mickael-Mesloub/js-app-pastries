@@ -28,7 +28,7 @@ const HomePage = () => {
         {!state.user.isConnected ? (
           <div className="home-not-connected">
             <p className="home-section-title">
-              Vous devez être connecté pour voir nos pâtisseries !
+              {'Vous devez être connecté(e) pour voir nos pâtisseries !'}
             </p>
             <CustomButton
               text="Me connecter"

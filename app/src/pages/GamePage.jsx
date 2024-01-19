@@ -190,7 +190,7 @@ const GamePage = () => {
         {!state.user.isConnected ? (
           <div className="game-not-connected">
             <p className="game-section-title">
-              Vous devez être connecté pour pouvoir jouer !
+              {'Vous devez être connecté(e) pour pouvoir jouer !'}
             </p>
             <CustomButton
               text="Me connecter"
