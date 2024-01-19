@@ -40,12 +40,6 @@ const UpdatePastryForm = ({ selectedPastry, handleCloseModal }) => {
     }
   };
 
-  if (selectedPastry) console.log(selectedPastry);
-
-  useEffect(() => {
-    console.log(newPastry);
-  }, [newPastry]);
-
   return (
     <>
       <form
@@ -56,10 +50,12 @@ const UpdatePastryForm = ({ selectedPastry, handleCloseModal }) => {
         <h2>Modifier une pâtisserie</h2>
         <input
           type="text"
+          value={newPastry.name}
           onChange={(e) => setNewPastry({ ...newPastry, name: e.target.value })}
         />
         <input
           type="number"
+          value={newPastry.quantity}
           onChange={(e) =>
             setNewPastry({ ...newPastry, quantity: e.target.value })
           }
