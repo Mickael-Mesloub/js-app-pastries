@@ -4,7 +4,7 @@ import { toastError, toastSuccess } from '../components/Toast';
 const initialState = { pastries: [] };
 
 export const fetchAllPastriesAsync = createAsyncThunk(
-  'get/pastries',
+  'pastries/fetchAllPastriesAsync',
   async () => {
     const response = await fetch(
       `${import.meta.env.VITE_API_URL}/api/pastries`,
@@ -20,24 +20,30 @@ export const fetchAllPastriesAsync = createAsyncThunk(
   }
 );
 
-export const addPastry = createAsyncThunk('post/pastry', async (newPastry) => {
-  const response = await fetch(`${import.meta.env.VITE_API_URL}/api/pastrie`, {
-    method: 'POST',
-    credentials: 'include',
-    headers: {
-      'Content-Type': 'application/json',
-    },
-    body: JSON.stringify(newPastry),
-  });
-  if (response.ok) {
-    return response.json();
-  } else {
-    throw new Error("L'ajout de la pâtisserie a échoué ⚠️");
+export const addPastry = createAsyncThunk(
+  'pastries/addPastry',
+  async (newPastry) => {
+    const response = await fetch(
+      `${import.meta.env.VITE_API_URL}/api/pastrie`,
+      {
+        method: 'POST',
+        credentials: 'include',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(newPastry),
+      }
+    );
+    if (response.ok) {
+      return response.json();
+    } else {
+      throw new Error("L'ajout de la pâtisserie a échoué ⚠️");
+    }
   }
-});
+);
 
 export const updatePastry = createAsyncThunk(
-  'put/pastry',
+  'pastries/updatePastry',
   async ([selectedPastryId, updatedPastry]) => {
     const response = await fetch(
       `${import.meta.env.VITE_API_URL}/api/pastrie/${selectedPastryId}`,
@@ -59,7 +65,7 @@ export const updatePastry = createAsyncThunk(
 );
 
 export const deletePastry = createAsyncThunk(
-  'delete/pastry',
+  'pastries/deletePastry',
   async (selectedPastryId) => {
     const response = await fetch(
       `${import.meta.env.VITE_API_URL}/api/pastrie/${selectedPastryId}`,

@@ -11,7 +11,7 @@ const initialState = storedState
       isLoading: false,
     };
 
-export const login = createAsyncThunk('login', async (userData) => {
+export const login = createAsyncThunk('auth/login', async (userData) => {
   console.log(userData);
   // use import.meta.env.VITE_API_URL to access API url
   const response = await fetch(`${import.meta.env.VITE_API_URL}/login`, {
@@ -29,7 +29,7 @@ export const login = createAsyncThunk('login', async (userData) => {
   }
 });
 
-export const logout = createAsyncThunk('logout', async () => {
+export const logout = createAsyncThunk('auth/logout', async () => {
   // use import.meta.env.VITE_API_URL to access API url
   const response = await fetch(`${import.meta.env.VITE_API_URL}/logout`, {
     credentials: 'include',
