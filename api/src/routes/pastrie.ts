@@ -152,7 +152,13 @@ router.put("/pastrie/:id", authentified, async (req: CustomRequest, res: Respons
     if( pastries )
         await fs.writeFile(filePath, JSON.stringify(pastries), 'utf-8');
 
-    return res.json(p);
+    return res.json({
+        ...p,
+        name: name ?? p.name,
+        quantity: quantity ?? p.quantity,
+        image: image ?? p.image,
+        choice: choice ?? p.choice,
+        });
 });
 
 // Endpoint pour supprimer une pastrie avec son id 
