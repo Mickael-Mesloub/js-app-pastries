@@ -201,7 +201,8 @@ const GamePage = () => {
           <>
             <h2 className="game-section-title">Jeu du Yams</h2>
             <div className="game-rules">
-              <p>Vous avez {rollsLeft} lancés</p>
+              <h3>Règles du jeu</h3>
+              <p>Vous avez 3 lancés</p>
               <p>
                 Si vous obtenez une paire (2 dés identiques), vous gagnez une
                 patisserie.
@@ -220,27 +221,33 @@ const GamePage = () => {
             <div>{diceIcons}</div>
 
             {won && data.length === 0 && (
-              <div>
-                <p>
-                  BRAVO, vous avez gagné ! Malheureusement il n'y a plus de
-                  patisseries disponibles...
+              <div className="game-won no-pastry">
+                <p>BRAVO, vous avez gagné 🥳 !</p>
+                <p className="contact-us">
+                  Malheureusement il n'y a plus de patisseries disponibles...
+                  🍰❌ N'hésitez pas à nous contacter pour que nous puissions
+                  tout de même vous offrir quelque chose... 🎁
                 </p>
+                <CustomButton
+                  text="Nous contacter"
+                  onClick={() => navigate('/contact')}
+                />
               </div>
             )}
 
             {won && data.length > 0 && (
-              <div>
-                <p>BRAVO, vous avez gagné :</p>
+              <div className="game-won">
+                <p>BRAVO 🥳 Vous avez gagné :</p>
                 {data.map((item) => (
-                  <div key={item.id}>
-                    <p>Nom: {item.name}</p>
+                  <div key={item.id} className="pastries-won">
+                    <p className="pastry-won">1x {item.name}</p>
                     <img src={item.image} alt={item.name} />
                   </div>
                 ))}
               </div>
             )}
 
-            {lost && <p>PERDU</p>}
+            {lost && <p className="game-lost">{`PERDU 😨 !`}</p>}
 
             {!won && rollsLeft > 0 && (
               <CustomButton

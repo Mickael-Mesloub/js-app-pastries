@@ -48,11 +48,60 @@
   }
 
   .game-rules {
+    > h3 {
+      font-size: 1.7rem;
+    }
     text-align: center;
     font-size: 1.1rem;
   }
 
   > .button-primary {
     margin-top: 1rem;
+  }
+}
+
+.game-lost {
+  text-align: center;
+  color: $red;
+  font-weight: 700;
+  font-size: 1.5rem;
+  margin: 0;
+}
+
+.game-won {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5rem;
+
+  > p {
+    text-align: center;
+    color: $green;
+    font-weight: 700;
+    font-size: 1.5rem;
+  }
+}
+
+.no-pastry {
+  width: 50%;
+  > p {
+    margin: 0;
+  }
+  .contact-us {
+    color: $black;
+    font-weight: 400;
+    font-size: 1.2rem;
+    margin: 1rem 0;
+  }
+}
+
+.pastries-won {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  .pastry-won {
+    font-size: 1.1rem;
+    font-weight: 600;
   }
 }
