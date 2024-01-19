@@ -39,7 +39,6 @@ export const addPastry = createAsyncThunk('post/pastry', async (newPastry) => {
 export const updatePastry = createAsyncThunk(
   'put/pastry',
   async ([selectedPastryId, updatedPastry]) => {
-    console.log(selectedPastryId, { ...updatedPastry });
     const response = await fetch(
       `${import.meta.env.VITE_API_URL}/api/pastrie/${selectedPastryId}`,
       {
@@ -104,7 +103,7 @@ export const pastriesSlice = createSlice({
     builder.addCase(addPastry.pending, () => {
       console.log('Ajout de la pâtisserie en cours...');
     });
-    builder.addCase(addPastry.rejected, (action) => {
+    builder.addCase(addPastry.rejected, (_, action) => {
       console.log(action.error.message);
       toastError("L'ajout de la pâtisserie a échoué ⚠️");
     });
@@ -118,28 +117,31 @@ export const pastriesSlice = createSlice({
     builder.addCase(updatePastry.pending, () => {
       console.log('Modification de la pâtisserie en cours...');
     });
-    builder.addCase(updatePastry.rejected, (action) => {
-      console.log(action.error);
+    builder.addCase(updatePastry.rejected, (_, action) => {
+      console.log(action.error.message);
       toastError('La modification de la pâtisserie a échouée ⚠️');
     });
     builder.addCase(updatePastry.fulfilled, (state, action) => {
       console.log('Pâtisserie modifiée avec succès ✅ !', action.payload);
       toastSuccess('Pâtisserie modifiée avec succès ✅ !');
-      state.pastries = state.pastries.map((pastry) => {
+
+      const updatedPastries = state.pastries.map((pastry) => {
         if (pastry.id === action.payload.id) {
-          return action.payload;
+          return { ...pastry, ...action.payload };
         } else {
           return pastry;
         }
       });
+
+      state.pastries = updatedPastries;
     });
 
     // deletePastry
     builder.addCase(deletePastry.pending, () => {
       console.log('Suppression de la pâtisserie en cours...');
     });
-    builder.addCase(deletePastry.rejected, (action) => {
-      console.log(action.error);
+    builder.addCase(deletePastry.rejected, (_, action) => {
+      console.log(action.error.message);
       toastError('La suppression de la pâtisserie a échouée ⚠️');
     });
     builder.addCase(deletePastry.fulfilled, (state, action) => {
