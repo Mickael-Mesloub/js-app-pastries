@@ -3,7 +3,6 @@ import Layout from '../components/Layout';
 import { useEffect, useState } from 'react';
 import { login } from '../store/auth';
 import './styles/LoginPage-styles.scss';
-import AddPastryForm from '../components/CrudForms/AddPastryForm';
 import BackOfficePage from './BackOfficePage';
 
 const LoginPage = () => {
