@@ -1,6 +1,6 @@
 import { useDispatch, useSelector } from 'react-redux';
 import CustomButton from './CustomButton';
-import { Link } from 'react-router-dom';
+import { NavLink } from 'react-router-dom';
 import { logout } from '../store/auth';
 import Logo from '../assets/images/logo-transparent.png';
 import './styles/Navbar-styles.scss';
@@ -27,15 +27,30 @@ const Navbar = () => {
         />
       </div>
       <div className="links">
-        <Link to="/" className="nav-link">
+        <NavLink
+          to="/"
+          className={({ isActive }) =>
+            isActive ? 'nav-link active-link' : 'nav-link'
+          }
+        >
           Home
-        </Link>
-        <Link to="/contact" className="nav-link">
+        </NavLink>
+        <NavLink
+          to="/contact"
+          className={({ isActive }) =>
+            isActive ? 'nav-link active-link' : 'nav-link'
+          }
+        >
           Contact
-        </Link>
-        <Link to="/login" className="nav-link">
+        </NavLink>
+        <NavLink
+          to="/login"
+          className={({ isActive }) =>
+            isActive ? 'nav-link active-link' : 'nav-link'
+          }
+        >
           {state.user.isConnected ? 'Admin' : 'Login'}
-        </Link>
+        </NavLink>
         {state.user.isConnected && (
           <CustomButton text="Logout" type="logout" onClick={handleLogout} />
         )}
