@@ -33,7 +33,7 @@
   },
   {
     "id": "1",
-    "name": "Fondant supreme",
+    "name": "Fondant suprême",
     "image": "supreme-fondant-aux-fruits-rouges.jpg",
     "quantity": 7,
     "quantityWon": 0,
@@ -41,7 +41,7 @@
   },
   {
     "id": "6",
-    "name": "Eclairs au chocolat",
+    "name": "Eclair au chocolat",
     "image": "eclair-chocolat.jpeg",
     "quantity": 5,
     "quantityWon": 0,
